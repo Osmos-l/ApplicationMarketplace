@@ -16,20 +16,11 @@ import javax.persistence.PersistenceContext;
  * @author JordanLcq
  */
 @Stateless
-public class TitreFacade extends AbstractFacade<Titre> implements TitreFacadeLocal {
-
-    @PersistenceContext(unitName = "com.mycompany_ApplicationMarketplace-ejb_ejb_1.0-SNAPSHOTPU")
-    private EntityManager em;
+public class TitreFacade implements TitreFacadeLocal {
     
     private List<Titre> titres;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
     public TitreFacade() {
-        super(Titre.class);
     }
     
     public List<Titre> getTitres() {

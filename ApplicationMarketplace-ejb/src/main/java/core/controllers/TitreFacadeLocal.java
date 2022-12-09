@@ -15,20 +15,6 @@ import javax.ejb.Local;
  */
 @Local
 public interface TitreFacadeLocal {
-
-    void create(Titre titre);
-
-    void edit(Titre titre);
-
-    void remove(Titre titre);
-
-    Titre find(Object id);
-
-    List<Titre> findAll();
-
-    List<Titre> findRange(int[] range);
-
-    int count();
     
     List<Titre> ajouter(Titre aAjouter) throws Exception;
         
