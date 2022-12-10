@@ -8,8 +8,6 @@ package core.controllers;
 import core.entities.Titre;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -73,8 +71,5 @@ public class TitreFacade implements TitreFacadeLocal {
     public List<Titre> rechercheMnemonique(String mnemonique) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
+      
 }
