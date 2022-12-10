@@ -5,6 +5,7 @@
  */
 package core.mdb;
 
+import core.entities.Titre;
 import core.services.TitreServiceLocal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.ObjectMessage;
 import javax.jms.TextMessage;
 
 /**
@@ -35,11 +37,14 @@ public class IntegrationEnBourseListener implements MessageListener {
     
     @Override
     public void onMessage(Message message) {
-        TextMessage text = (TextMessage) message;
         try {
-            System.out.println("IntegrationEnBourseListener - New incoming message:");
-            System.out.println(text.getText());
+           ObjectMessage om = (ObjectMessage) message;
+           Titre nouveauTitre = (Titre) om.getObject();
+            
+            titreService.MettreEnVente(nouveauTitre);
         } catch (JMSException ex) {
+            Logger.getLogger(IntegrationEnBourseListener.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(IntegrationEnBourseListener.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

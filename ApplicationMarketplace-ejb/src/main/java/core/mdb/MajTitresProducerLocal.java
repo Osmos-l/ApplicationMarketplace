@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package core.services;
+package core.mdb;
 
 import core.entities.Titre;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,8 +14,7 @@ import javax.ejb.Local;
  * @author JordanLcq
  */
 @Local
-public interface TitreServiceLocal {
+public interface MajTitresProducerLocal {
     
-    public void MettreEnVente(Titre nouveauTitre) 
-            throws Exception;
+    public void sendTitre(Titre titre, String jmsType);
 }
