@@ -6,7 +6,6 @@
 package core.mdb;
 
 import core.entities.Titre;
-import java.util.List;
 import javax.ejb.Local;
 
 /**

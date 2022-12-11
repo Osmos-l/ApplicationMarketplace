@@ -6,6 +6,8 @@
 package core.controllers;
 
 import core.entities.Titre;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -16,7 +18,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class TitreFacade implements TitreFacadeLocal {
     
-    private List<Titre> titres;
+    private final List<Titre> titres = new ArrayList<>();
 
     public TitreFacade() {
     }
@@ -64,7 +66,14 @@ public class TitreFacade implements TitreFacadeLocal {
 
     @Override
     public Titre trouverParMnemonique(String mnemonique) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Titre res = null;
+        for (Titre titre : this.titres) {
+            if (titre.getMnemonique().equals(mnemonique)) {
+                res = titre;
+                break;
+            }
+        }
+        return res;
     }
 
     @Override

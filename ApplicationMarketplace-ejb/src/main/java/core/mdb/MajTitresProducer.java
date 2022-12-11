@@ -40,7 +40,7 @@ public class MajTitresProducer implements MajTitresProducerLocal {
 
     @Override
     public void sendTitre(Titre titre, String jmsType) {
-        // jmsTYPE: Ajout, Edit
+        // jmsTYPE: ajout, edit, delete
         try {
             JMSProducer producer = context.createProducer();
 
