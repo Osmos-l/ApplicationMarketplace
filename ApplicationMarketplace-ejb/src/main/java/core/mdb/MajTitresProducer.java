@@ -13,6 +13,7 @@ import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.jms.JMSConnectionFactory;
 import javax.jms.JMSContext;
+import javax.jms.JMSException;
 import javax.jms.JMSProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Topic;
@@ -23,9 +24,23 @@ import javax.jms.Topic;
  */
 @Singleton
 public class MajTitresProducer implements MajTitresProducerLocal {
+    
+    public enum JMSTypeMessage {
+        EDIT("edit"),
+        DELETE("delete"),
+        ADD("add");
+        
+        private final String label;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+        private JMSTypeMessage(String label) {
+            this.label = label;
+        }
+        
+        public String getLabel() {
+            return this.label;
+        }
+    };
+    
      /**
      * Nom du Topic recherché.
      */
@@ -39,17 +54,16 @@ public class MajTitresProducer implements MajTitresProducerLocal {
     private JMSContext context;
 
     @Override
-    public void sendTitre(Titre titre, String jmsType) {
-        // jmsTYPE: ajout, edit, delete
+    public void sendTitre(Titre titre, JMSTypeMessage typeMessage) {
         try {
             JMSProducer producer = context.createProducer();
 
             ObjectMessage mess = context.createObjectMessage();
-            mess.setJMSType(jmsType);
+            mess.setJMSType(typeMessage.getLabel());
             mess.setObject(titre);
             context.createProducer().send(majTitresTopic, mess);
 
-        } catch (Exception ex) {
+        } catch (JMSException ex) {
             Logger.getLogger(MajTitresProducer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

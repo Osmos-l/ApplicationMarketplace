@@ -64,12 +64,12 @@ public class Titre implements Serializable {
         this.mnemonique = mnemonique;
     }
 
-    public Double getPrix() {
+    public Double getCours() {
         return cours;
     }
 
-    public void setPrix(Double prix) {
-        this.cours = prix;
+    public void setCours(Double cours) {
+        this.cours = cours;
     }
 
     public Integer getQuantiteDisponible() {

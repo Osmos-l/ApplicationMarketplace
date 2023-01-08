@@ -7,6 +7,7 @@ package core.services;
 
 import core.controllers.TitreFacadeLocal;
 import core.entities.Titre;
+import core.mdb.MajTitresProducer;
 import core.mdb.MajTitresProducerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,15 +26,11 @@ public class TitreService implements TitreServiceLocal {
     private MajTitresProducerLocal majTitresProducer;
     
     @Override
-    public void MettreEnVente(Titre nouveauTitre) 
-            throws Exception {
+    public void MettreEnVente(Titre nouveauTitre) throws Exception {
         gestionTitre.ajouter(nouveauTitre);
         
-        majTitresProducer.sendTitre(nouveauTitre, "ajout");
-    }
-
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-    
+        majTitresProducer.sendTitre(nouveauTitre, MajTitresProducer
+                .JMSTypeMessage.ADD);
+    } 
     
 }

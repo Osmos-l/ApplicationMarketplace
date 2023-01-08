@@ -13,7 +13,8 @@ import javax.ejb.Local;
  * @author JordanLcq
  */
 @Local
+
 public interface MajTitresProducerLocal {
-    
-    public void sendTitre(Titre titre, String jmsType);
+            
+    public void sendTitre(Titre titre, MajTitresProducer.JMSTypeMessage typeMessage);
 }
